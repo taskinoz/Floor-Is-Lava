@@ -15,6 +15,40 @@ void function startwaiting()
 
 }
 
+bool function CheckLevelFlags(entity player)
+{
+	bool flagResult = true
+	switch ( GetMapName() ){
+		case "sp_hub_timeshift":
+			if (!Flag( "AudioLogPlaying" ))
+				flagResult = true
+			else
+				flagResult = false
+		break
+		case "sp_timeshift_spoke02":
+			if (Flag( "AudioLogPlaying" ) ) {
+				flagResult = false
+			}
+			else if (( !Flag( "approaching_fan_drop" ) && !Flag( "exited_intel_room3" ) ) || ( Flag( "approaching_fan_drop" ) && Flag( "exited_intel_room3" ) )) {
+				flagResult = true
+			}
+			else {
+				flagResult = false
+			}
+		break
+		case "sp_crashsite":
+			if ((!Flag("og_final_words") && (!Flag("first_wallrun_completed") || !Flag("BuddyTitanFlyout"))) || ( Flag("og_final_words") && (Flag("first_wallrun_completed") || Flag("BuddyTitanFlyout")) ) &&
+			 		(!Flag("battery2ship_crawl_space") && !Flag("battery2ship_enable_loop_blocker") ) || ( Flag("battery2ship_crawl_space") && Flag("battery2ship_enable_loop_blocker") ) ) {
+				flagResult = true
+			}
+			else {
+				flagResult = false
+			}
+		break
+	}
+	return flagResult
+}
+
 entity function floorIsLava( entity ent )
 {
 	printt("Start Floorislava")
@@ -30,8 +64,7 @@ entity function floorIsLava( entity ent )
 						!ent.ContextAction_IsLeeching() &&
 						!ent.ContextAction_IsActive() &&
 						!ent.IsInvulnerable() &&
-						!Flag( "AudioLogPlaying" ) &&
-						( ( !Flag( "approaching_fan_drop" ) && !Flag( "StartAndersonHologram3" ) ) || ( Flag( "approaching_fan_drop" ) && Flag( "StartAndersonHologram3" ) ) )
+						CheckLevelFlags(ent)
 						)
         {
 					if (IsAlive(ent)) {
