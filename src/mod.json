@@ -8,10 +8,10 @@
 	"Contacts" : [
 		"tristan@taskinoz.com"
 	],
-	"Version" : "1.1",
+	"Version" : "1.2",
 	"CustomScripts":[
 		{
-			"Path": "sp/sh_floor_is_lava.nut",
+			"Path": "sh_floor_is_lava.nut",
 			"RunOn": "SERVER",
 			"ServerCallback": "startthething"
 		}

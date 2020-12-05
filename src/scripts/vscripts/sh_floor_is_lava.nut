@@ -20,10 +20,19 @@ entity function floorIsLava( entity ent )
 	printt("Start Floorislava")
   while (true)
   {
-    if ( ent != null && IsValid(ent) ){
+    if ( ent != null && IsValid(ent) && ent.IsPlayer() ){
       if ( ent.IsOnGround() )
       {
-        if ( !ent.IsWallRunning() && !ent.IsWallHanging() && !ent.ContextAction_IsBusy() && !ent.GetCinematicEventFlags() )
+        if (!ent.IsWallRunning() &&
+						!ent.IsWallHanging() &&
+						!ent.ContextAction_IsBusy() &&
+						!ent.GetCinematicEventFlags() &&
+						!ent.ContextAction_IsLeeching() &&
+						!ent.ContextAction_IsActive() &&
+						!ent.IsInvulnerable() &&
+						!Flag( "AudioLogPlaying" ) &&
+						( ( !Flag( "approaching_fan_drop" ) && !Flag( "StartAndersonHologram3" ) ) || ( Flag( "approaching_fan_drop" ) && Flag( "StartAndersonHologram3" ) ) )
+						)
         {
 					if (IsAlive(ent)) {
 						ent.SetHealth(ent.GetHealth()- ( ( GetConVarString("sp_difficulty").tointeger() + 1 ) * 20 ) )
