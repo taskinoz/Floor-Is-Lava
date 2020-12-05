@@ -23,7 +23,7 @@ entity function floorIsLava( entity ent )
     if ( ent != null && IsValid(ent) ){
       if ( ent.IsOnGround() )
       {
-        if ( !ent.IsWallRunning() && !ent.IsWallHanging() )
+        if ( !ent.IsWallRunning() && !ent.IsWallHanging() && !ent.ContextAction_IsBusy() && !ent.GetCinematicEventFlags() )
         {
 					if (IsAlive(ent)) {
 						ent.SetHealth(ent.GetHealth()- ( ( GetConVarString("sp_difficulty").tointeger() + 1 ) * 20 ) )

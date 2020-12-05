@@ -8,7 +8,7 @@
 	"Contacts" : [
 		"tristan@taskinoz.com"
 	],
-	"Version" : "1.0",
+	"Version" : "1.1",
 	"CustomScripts":[
 		{
 			"Path": "sp/sh_floor_is_lava.nut",
