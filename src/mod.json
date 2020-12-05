@@ -1,0 +1,19 @@
+{
+	"ApiId" : "piCdw8m2asfZBKvrq",
+	"Name" : "Floor is Lava",
+	"Description" : "The floor is lava, dont touch it or you die",
+	"Authors" : [
+		"Tristan Kennedy"
+	],
+	"Contacts" : [
+		"tristan@taskinoz.com"
+	],
+	"Version" : "1.0",
+	"CustomScripts":[
+		{
+			"Path": "sp/sh_floor_is_lava.nut",
+			"RunOn": "SERVER",
+			"ServerCallback": "startthething"
+		}
+	]
+}
